@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const fs = require("fs");
 const db = require("./db/db.json");
+var uniqid = require("uniqid");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -24,7 +25,7 @@ app.get("/api/notes", (req, res) => {
 });
 
 app.post("/api/notes", (req, res) => {
-  req.body.id = db.length.toString();
+  req.body.id = uniqid();
   fs.readFile("./db/db.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
@@ -37,6 +38,26 @@ app.post("/api/notes", (req, res) => {
       JSON.stringify(notes, null, 2)
     );
     res.send(notes);
+  });
+});
+
+app.delete("/api/notes/:id", (req, res) => {
+  const noteToDelete = req.params.id.replace(":", "");
+  console.log(noteToDelete);
+  fs.readFile("./db/db.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+    let notes = JSON.parse(data);
+    console.log(notes);
+    const newNotes = notes.filter((note) => note.id !== noteToDelete);
+    console.log(newNotes);
+
+    fs.writeFileSync(
+      path.join(__dirname, "./db/db.json"),
+      JSON.stringify(newNotes, null, 2)
+    );
+    res.send(newNotes);
   });
 });
 
