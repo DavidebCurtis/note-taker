@@ -6,10 +6,6 @@
 
 A simple note taking application! Create and save/delete notes to keep yourself on track. simply follow the Heroku link and use this application yourself.
 
-### Check out the Demo here
-
-[![Alt text](./assets/screenshot.png)](https://www.youtube.com/watch?v=5Z_q55RgsAg)
-
 ## Table of Contents
 
 [Installation](#installation)
@@ -25,7 +21,7 @@ none
 
 ## Usage
 
-If you follow the link to the deployed app you can use it yourself! [![Alt text]Note Taker](https://secure-forest-87411.herokuapp.com/)
+If you follow the link to the deployed app you can use it yourself! [Note Taker](https://secure-forest-87411.herokuapp.com/)
 
 ## License
 
